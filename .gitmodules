@@ -1,0 +1,3 @@
+[submodule "src/animation/AnimateDiff"]
+	path = src/animation/AnimateDiff
+	url = ./src/animation/AnimateDiff
