@@ -39,7 +39,7 @@ def main(local_dir, vis_dir, species, breed):
     This function is used to generate the metadata.jsonl file for the fine-tuned images and the visulization of the fine-tuned images.
     '''
    
-    assert os.path.exists(local_dir)
+    assert os.path.exists(local_dir), f"{local_dir} does not exist."
     os.makedirs(vis_dir, exist_ok = True)
     # generate caption
     device = "cuda" if torch.cuda.is_available() else "cpu"
