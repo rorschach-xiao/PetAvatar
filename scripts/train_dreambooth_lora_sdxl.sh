@@ -5,6 +5,7 @@ BREED=$4
 
 
 # data preprocessing
+
 python src/customization/preprocessing_data.py \
   --img_dir=${INPUT_DATA_DIR} \
   --vis_dir="${INPUT_DATA_DIR}_vis" \
@@ -12,8 +13,7 @@ python src/customization/preprocessing_data.py \
   --breed=${BREED}
 
 #Dreambooth LoRA fine-tuning
-cd src/customization
-accelerate launch train_dreambooth_lora_sdxl.py \
+accelerate launch src/customization/train_dreambooth_lora_sdxl.py \
   --pretrained_model_name_or_path="stabilityai/stable-diffusion-xl-base-1.0" \
   --pretrained_vae_model_name_or_path="madebyollin/sdxl-vae-fp16-fix" \
   --dataset_name=${INPUT_DATA_DIR} \
