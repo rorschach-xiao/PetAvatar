@@ -1,6 +1,6 @@
 INPUT_DATA_DIR=$1
 MODEL_OUTPUT_DIR=$2
-SPECIES=$4
+SPECIES=$3
 BREED=$4
 
 # only support dog and cat species
