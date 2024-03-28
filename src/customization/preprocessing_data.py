@@ -56,8 +56,8 @@ def main(local_dir, vis_dir, species, breed):
         generated_caption = blip_processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
         return generated_caption
         
-    imgs_and_paths = [(path,Image.open(path)) for path in glob.glob(f"{local_dir}*.jpeg")]
-    imgs = [Image.open(path) for path in glob.glob(f"{local_dir}*.jpeg")]
+    imgs_and_paths = [(path,Image.open(path)) for path in glob.glob(os.path.join(local_dir, "*.jpeg"))]
+    imgs = [Image.open(path) for path in glob.glob(os.path.join(local_dir, "*.jpeg"))]
     # visulization
     num_imgs_to_preview = 5
     vis_grid = image_grid(imgs[:num_imgs_to_preview], 1, num_imgs_to_preview)
