@@ -12,6 +12,7 @@ python src/customization/preprocess_dreambooth.py \
   --breed=$BREED
 
 #Dreambooth LoRA fine-tuning
+cd src/customization
 accelerate launch train_dreambooth_lora_sdxl.py \
   --pretrained_model_name_or_path="stabilityai/stable-diffusion-xl-base-1.0" \
   --pretrained_vae_model_name_or_path="madebyollin/sdxl-vae-fp16-fix" \
