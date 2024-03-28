@@ -1,3 +1,4 @@
 [submodule "src/animation/AnimateDiff"]
 	path = src/animation/AnimateDiff
-	url = ./src/animation/AnimateDiff
+	url = https://github.com/guoyww/AnimateDiff.git
+	branch = sdxl
