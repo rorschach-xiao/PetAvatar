@@ -5,7 +5,7 @@ BREED=$4
 
 
 # data preprocessing
-python src/customization/preprocess_dreambooth.py \
+python src/customization/preprocessing_data.py \
   --input_dir=${INPUT_DATA_DIR} \
   --output_dir="${INPUT_DATA_DIR}_vis" \
   --species=$SPECIES \
