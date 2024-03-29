@@ -11,15 +11,15 @@ echo "==>> Starting generating videos..."
 python src/animation/config_generator.py --lora_weight_path ${LORA_PATH} --prompt_file_path ${PROMPT_FILE} --step ${STEP} --guidance_scale ${GUIDANCE_SCALE} --lora_alpha ${LORA_ALPHA}
 mv ./5-lora.yaml src/animation/AnimateDiff/configs/prompts/
 
-# create a soft link for lora weight
-ln -s ${LORA_PATH} src/animation/AnimateDiff/models/DreamBooth_LoRA/lora.safetensors
+# copy lora weight
+cp ${LORA_PATH} src/animation/AnimateDiff/models/DreamBooth_LoRA/lora.safetensors
 
 # generate video
 cd ./src/animation/AnimateDiff
 CUR_PATH=`pwd`
 python -m scripts.animate --exp_config configs/prompts/5-lora.yaml --H 1024 --W 1024 --L 16 --xformers --output_dir ${CUR_PATH}/../../../sdxl_video/${OUTPUT_DIR}
 
-# remove the soft link
+# remove the temporary lora weight
 rm ./models/DreamBooth_LoRA/lora.safetensors
 
 echo "==>> Video generation completed!"
