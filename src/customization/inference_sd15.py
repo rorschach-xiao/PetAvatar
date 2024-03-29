@@ -24,13 +24,14 @@ def main():
     assert os.path.exists(repo_id), f"{repo_id} does not exist."
     pipe.load_lora_weights(repo_id)
     _ = pipe.to("cuda")
-    os.makedirs(os.path.join(args.output_dir, os.path.basename(args.lora_weights_dir)), exist_ok = True)
+    savedir = os.path.join(args.output_dir, os.path.dirname(args.lora_weights_dir).split("/")[-1])
+    os.makedirs(os.path.join(savedir, exist_ok = True))
     with open(args.prompt_file, "r") as f:
         for prompt in f.readlines():
             prompt = prompt.replace("\n", "")
             print('==>> Generating image for prompt: ', prompt)
             image = pipe(prompt=prompt, num_inference_steps=25).images[0]
-            output_path = os.path.join(args.output_dir, os.path.dirname(args.lora_weights_dir).split("/")[-1], 
+            output_path = os.path.join(savedir, 
                                 f"output_{args.prompt}.png")
             image.save(output_path)
 
