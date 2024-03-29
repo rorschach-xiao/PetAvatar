@@ -32,7 +32,7 @@ def main(args):
                  "n_prompt": ["bad quality,worst quality" for _ in range(len(prompts))]}
     
     conf = OmegaConf.create(conf_dict)
-    OmegaConf.save(conf, "AnimateDiff/configs/prompts/5-lora.yaml")
+    OmegaConf.save(conf, "./5-lora.yaml")
 
 
 if __name__ == '__main__':
