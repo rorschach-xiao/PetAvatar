@@ -15,7 +15,7 @@ def parse_args():
     
     return parser.parse_args()
 
-def main():
+def main(args):
     pipe = DiffusionPipeline.from_pretrained(
         "runwayml/stable-diffusion-v1-5",
         use_safetensors=True
