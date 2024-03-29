@@ -587,7 +587,8 @@ class DreamBoothDataset(Dataset):
         if class_data_root is not None:
             self.class_data_root = Path(class_data_root)
             self.class_data_root.mkdir(parents=True, exist_ok=True)
-            self.class_images_path = list(self.class_data_root.iterdir())
+            # self.class_images_path = list(self.class_data_root.iterdir())
+            self.class_images_path = list(self.class_data_root.glob('*.jpg'))
             if class_num is not None:
                 self.num_class_images = min(len(self.class_images_path), class_num)
             else:
