@@ -31,7 +31,7 @@ def main(args):
     pipe.load_lora_weights(repo_id)
     _ = pipe.to("cuda")
     savedir = os.path.join(args.output_dir, os.path.dirname(args.lora_weights_dir).split("/")[-1])
-    os.makedirs(os.path.join(savedir, exist_ok = True))
+    os.makedirs(savedir, exist_ok = True)
     with open(args.prompt_file, "r") as f:
         for prompt in f.readlines():
             prompt = prompt.replace("\n", "")
