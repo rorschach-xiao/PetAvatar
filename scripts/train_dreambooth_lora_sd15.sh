@@ -11,8 +11,7 @@ fi
 
 
 #!/usr/bin/env bash
-cd src/customization
-accelerate launch train_dreambooth_lora.py \
+accelerate launch src/customization/train_dreambooth_lora.py \
   --pretrained_model_name_or_path="runwayml/stable-diffusion-v1-5" \
   --instance_data_dir=${INPUT_DATA_DIR} \
   --class_data_dir=${SPECIES} \
