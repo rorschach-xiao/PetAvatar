@@ -32,7 +32,7 @@ def main(args):
             print('==>> Generating image for prompt: ', prompt)
             image = pipe(prompt=prompt, num_inference_steps=25).images[0]
             output_path = os.path.join(savedir, 
-                                f"output_{args.prompt}.png")
+                                f"output_{prompt}.png")
             image.save(output_path)
 
 
