@@ -11,16 +11,16 @@ echo "==>> Starting generating images..."
 
 if [[ "$SD_BASE" == "sd15" ]]
 then
-  python ../src/customization/inference_sd15.py \
+  python src/customization/inference_sd15.py \
     --prompt_file=${PROMPT_FILE} \
     --lora_weights_dir="${LORA_PATH}" \
-    --output_dir="../sdxl_output" \
+    --output_dir="./sdxl_output" \
     
 else
-  python ../src/customization/inference_sdxl.py \
+  python src/customization/inference_sdxl.py \
     --prompt_file=${PROMPT_FILE} \
     --lora_weights_dir="${LORA_PATH}" \
-    --output_dir="../sd15_output" \
+    --output_dir="./sd15_output" \
 
 fi
 
