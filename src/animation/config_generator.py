@@ -1,6 +1,6 @@
 from omegaconf import OmegaConf
 import argparse
-import pickle
+import os
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -22,7 +22,7 @@ def main(args):
     with open(args.prompt_file_path, "r") as f:
         for prompt in f.readlines():
             prompts.append(prompt.replace("\n", ""))
-    conf_dict = {"lora_model_path": args.lora_weight_path,
+    conf_dict = {"lora_model_path": "models/DreamBooth_LoRA/lora.safetensors",
                  "motion_module_path": "models/Motion_Module/mm_sdxl_v10_beta.ckpt",
                  "seed": -1,
                  "guidance_scale": args.guidance_scale,
