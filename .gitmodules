@@ -2,3 +2,7 @@
 	path = src/animation/AnimateDiff_sdxl
 	url = https://github.com/rorschach-xiao/AnimateDiff.git
 	branch = sdxl
+[submodule "src/animation/AnimateDiff_sd15"]
+	path = src/animation/AnimateDiff_sd15
+	url = https://github.com/rorschach-xiao/AnimateDiff.git
+	branch = main
