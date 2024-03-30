@@ -18,7 +18,7 @@ then
   cp ${LORA_PATH} src/animation/AnimateDiff_sd15/models/DreamBooth_LoRA/lora.safetensors
 
   # generate video
-  cd ./src/animation/AnimateDif_sd15
+  cd ./src/animation/AnimateDiff_sd15
   CUR_PATH=`pwd`
   python -m scripts.animate --config configs/prompts/5-lora.yaml --output_dir ${CUR_PATH}/../../../sd15_video/${OUTPUT_DIR}
 
@@ -33,7 +33,7 @@ else
   cp ${LORA_PATH} src/animation/AnimateDiff_sdxl/models/DreamBooth_LoRA/lora.safetensors
 
   # generate video
-  cd ./src/animation/AnimateDif_sdxl
+  cd ./src/animation/AnimateDiff_sdxl
   CUR_PATH=`pwd`
   python -m scripts.animate --exp_config configs/prompts/5-lora.yaml --H 1024 --W 1024 --L 16 --xformers --output_dir ${CUR_PATH}/../../../sdxl_video/${OUTPUT_DIR}
 
