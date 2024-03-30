@@ -27,7 +27,7 @@ def main(args):
     if args.sd_base == "sd15":
         conf_dict = {"domain_lora_scale": 1.0,
                      "adapter_lora_path": "models/Motion_Module/v3_sd15_adapter.ckpt",
-                     "lora_path": "models/DreamBooth_LoRA/lora.safetensors",
+                     "lora_model_path": "models/DreamBooth_LoRA/lora.safetensors",
                      "inference_config": "configs/inference/inference-v3.yaml",
                      "motion_module": "models/Motion_Module/v3_sd15_mm.ckpt",
                      "seed": -1,
