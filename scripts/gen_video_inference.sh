@@ -20,7 +20,7 @@ then
   # generate video
   cd ./src/animation/AnimateDiff_sd15
   CUR_PATH=`pwd`
-  python -m scripts.animate --config configs/prompts/5-lora.yaml --output_dir ${CUR_PATH}/../../../sd15_video/${OUTPUT_DIR}
+  python -m scripts.animate --config configs/prompts/5-lora.yaml --output-dir ${CUR_PATH}/../../../sd15_video/${OUTPUT_DIR}
 
   # remove the temporary lora weight
   rm ./models/DreamBooth_LoRA/lora.safetensors
