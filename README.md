@@ -8,7 +8,7 @@ This project uses DreamBooth + LoRA to generate customized model for your own pe
     <figcaption style="text-align:center;font-size:12px;">pet images from users</figcaption>
 </figure>
 
-<style>
+<!-- <style>
 .center 
 {
   width: auto;
@@ -16,17 +16,17 @@ This project uses DreamBooth + LoRA to generate customized model for your own pe
   margin-left: auto;
   margin-right: auto;
 }
-</style>
+</style> -->
 
 
 <div class="center">
 
 |prompt| static result|animated result|
 |:---:|:---:|:---:|
-|`a photo of a TOK collie dog wearing sunglasses and driving a car, high resolution, realistic, 4k, high quality`|![](imgs/output_a_photo_of_a_TOK_collie_dog_wearing_sunglasses_and_driving_a_car,_high_quality,_realistic,_4k,_high_resolution.png){:width="760px" :height="760px"}|![](imgs/2024-03-31T15-38-31.gif)|
-|`a photo of a TOK collie dog playing in the snowfield, mountain in background, high resolution, realistic, 4k, high quality`|![](imgs/output_a_photo_of_a_TOK_collie_dog_playing_in_the_snowfield,_mountain_in_background,_high_quality,_realistic,_4k,_high_resolution.png){:width="760px" :height="760px"}|![](imgs/2024-03-31T15-48-14.gif)|
-|`a photo of a TOK collie dog swimming in the sea, setting sun in background, orange sky, high resolution, realistic, 4k, high quality`|![](imgs/output_a_photo_of_a_TOK_collie_dog_swimming_in_the_sea,_setting_sun_in_background,_orange_sky,_high_quality,_realistic,_4k,_high_resolution.png){:width="760px" :height="760px"}|![](imgs/2024-03-31T15-57-55.gif)|
-|`a photo of a TOK collie dog standing in the Colosseum in Rome, high resolution, realistic, 4k, high quality`|![](imgs/output_a_photo_of_a_TOK_collie_dog_standing_in_the_Colosseum_in_Rome,_high_quality,_realistic,_4k,_high_resolution.png){:width="760px" :height="760px"}|![](imgs/2024-03-31T16-07-38.gif)|
+|`a photo of a TOK collie dog wearing sunglasses and driving a car, high resolution, realistic, 4k, high quality`|![](imgs/output_a_photo_of_a_TOK_collie_dog_wearing_sunglasses_and_driving_a_car,_high_quality,_realistic,_4k,_high_resolution.png?width=760&height=760)|![](imgs/2024-03-31T15-38-31.gif)|
+|`a photo of a TOK collie dog playing in the snowfield, mountain in background, high resolution, realistic, 4k, high quality`|![](imgs/output_a_photo_of_a_TOK_collie_dog_playing_in_the_snowfield,_mountain_in_background,_high_quality,_realistic,_4k,_high_resolution.png?width=760&height=760)|![](imgs/2024-03-31T15-48-14.gif)|
+|`a photo of a TOK collie dog swimming in the sea, setting sun in background, orange sky, high resolution, realistic, 4k, high quality`|![](imgs/output_a_photo_of_a_TOK_collie_dog_swimming_in_the_sea,_setting_sun_in_background,_orange_sky,_high_quality,_realistic,_4k,_high_resolution.png?width=760&height=760)|![](imgs/2024-03-31T15-57-55.gif)|
+|`a photo of a TOK collie dog standing in the Colosseum in Rome, high resolution, realistic, 4k, high quality`|![](imgs/output_a_photo_of_a_TOK_collie_dog_standing_in_the_Colosseum_in_Rome,_high_quality,_realistic,_4k,_high_resolution.png?width=760&height=760)|![](imgs/2024-03-31T16-07-38.gif)|
 
 </div>
 
