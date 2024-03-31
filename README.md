@@ -3,12 +3,8 @@
 This project uses DreamBooth + LoRA to generate customized model for your own pets, and uses AnimateDiff to animate your pets.
 
 
+> pet images from user
 ![user pet](./imgs/vis.png)
-<!--This is an HTML Comment-->
-<!--This is a comment to center the next line-->
-> <div style="text-align:center">pet images from users</div>
-<!--This is the end of the HTML comment-->
-<!--This is the end of the HTML Comment-->
 
 <!-- <style>
 .center 
