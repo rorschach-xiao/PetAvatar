@@ -64,7 +64,7 @@ def main(local_dir, vis_dir, species, breed):
     vis_grid.save(os.path.join(vis_dir,'vis.png'))
     
     caption_prefix = f"a photo of TOK {breed} {species}, "
-    with open(f'{local_dir}metadata.jsonl', 'w') as outfile:
+    with open(os.path.join(local_dir, f'metadata.jsonl'), 'w') as outfile:
       for img in imgs_and_paths:
           caption = caption_prefix + caption_images(img[1]).split("\n")[0]
           entry = {"file_name":img[0].split("/")[-1], "prompt": caption}
