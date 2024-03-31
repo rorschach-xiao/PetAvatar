@@ -14,11 +14,11 @@ fi
 accelerate launch src/customization/train_dreambooth_lora.py \
   --pretrained_model_name_or_path="runwayml/stable-diffusion-v1-5" \
   --instance_data_dir=${INPUT_DATA_DIR} \
-  --class_data_dir=${SPECIES} \
+#   --class_data_dir=${SPECIES} \
   --output_dir=${MODEL_OUTPUT_DIR} \
-  --with_prior_preservation --prior_loss_weight=1.0 \
+#   --with_prior_preservation --prior_loss_weight=1.0 \
   --instance_prompt="a photo of TOK ${BREED} ${SPECIES}" \
-  --class_prompt="a photo of ${SPECIES}" \
+#   --class_prompt="a photo of ${SPECIES}" \
   --resolution=512 \
   --train_batch_size=1 \
   --gradient_accumulation_steps=1 \
