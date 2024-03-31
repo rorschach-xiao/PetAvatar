@@ -32,7 +32,7 @@ def main(args):
                      "motion_module": "models/Motion_Module/v3_sd15_mm.ckpt",
                      "seed": -1,
                      "guidance_scale": args.guidance_scale,
-                     "step": args.step,
+                     "steps": args.step,
                      "lora_alpha": args.lora_alpha, 
                      "prompt": prompts,
                      "n_prompt": ["bad quality,worst quality" for _ in range(len(prompts))]}
