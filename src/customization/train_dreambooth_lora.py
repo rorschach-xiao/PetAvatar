@@ -578,7 +578,7 @@ class DreamBoothDataset(Dataset):
         self.instance_data_root = Path(instance_data_root)
         if not self.instance_data_root.exists():
             raise ValueError("Instance images root doesn't exists.")
-        self.captions = None
+        self.captions = []
         self.instance_images_path = []
         if os.path.exists(os.path.join(instance_data_root, "metadata.jsonl")):
             with open(os.path.join(instance_data_root, "metadata.jsonl"), "r") as f:
@@ -590,6 +590,7 @@ class DreamBoothDataset(Dataset):
         else:
         # self.instance_images_path = list(Path(instance_data_root).iterdir())
             self.instance_images_path = list(Path(instance_data_root).glob('*.jpeg'))
+            self.captions = None
         self.num_instance_images = len(self.instance_images_path)
         self.instance_prompt = instance_prompt
         self._length = self.num_instance_images
