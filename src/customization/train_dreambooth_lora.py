@@ -22,6 +22,7 @@ import os
 import shutil
 import warnings
 from pathlib import Path
+import json
 
 import numpy as np
 import torch
@@ -577,9 +578,18 @@ class DreamBoothDataset(Dataset):
         self.instance_data_root = Path(instance_data_root)
         if not self.instance_data_root.exists():
             raise ValueError("Instance images root doesn't exists.")
-
+        self.captions = None
+        self.instance_images_path = []
+        if os.path.exists(os.path.join(instance_data_root, "metadata.jsonl")):
+            with open(os.path.join(instance_data_root, "metadata.jsonl"), "r") as f:
+                for line in f:
+                    data = json.loads(line)
+                    img_path = Path(os.path.join(instance_data_root, data['file_name']))
+                    self.instance_images_path.append(img_path)
+                    self.captions.append(data['prompt'])
+        else:
         # self.instance_images_path = list(Path(instance_data_root).iterdir())
-        self.instance_images_path = list(Path(instance_data_root).glob('*.jpeg'))
+            self.instance_images_path = list(Path(instance_data_root).glob('*.jpeg'))
         self.num_instance_images = len(self.instance_images_path)
         self.instance_prompt = instance_prompt
         self._length = self.num_instance_images
@@ -614,6 +624,10 @@ class DreamBoothDataset(Dataset):
         example = {}
         instance_image = Image.open(self.instance_images_path[index % self.num_instance_images])
         instance_image = exif_transpose(instance_image)
+        if self.captions is None:
+            instance_prompt = self.captions[index % self.num_instance_images]
+        else:
+            instance_prompt = self.instance_prompt
 
         if not instance_image.mode == "RGB":
             instance_image = instance_image.convert("RGB")
@@ -622,8 +636,9 @@ class DreamBoothDataset(Dataset):
         if self.encoder_hidden_states is not None:
             example["instance_prompt_ids"] = self.encoder_hidden_states
         else:
+        
             text_inputs = tokenize_prompt(
-                self.tokenizer, self.instance_prompt, tokenizer_max_length=self.tokenizer_max_length
+                self.tokenizer, instance_prompt, tokenizer_max_length=self.tokenizer_max_length
             )
             example["instance_prompt_ids"] = text_inputs.input_ids
             example["instance_attention_mask"] = text_inputs.attention_mask
