@@ -6,11 +6,11 @@ BREED=$4
 
 # data preprocessing
 
-python src/customization/preprocessing_data.py \
-  --img_dir=${INPUT_DATA_DIR} \
-  --vis_dir="${INPUT_DATA_DIR}_vis" \
-  --species=${SPECIES} \
-  --breed=${BREED}
+# python src/customization/preprocessing_data.py \
+#   --img_dir=${INPUT_DATA_DIR} \
+#   --vis_dir="${INPUT_DATA_DIR}_vis" \
+#   --species=${SPECIES} \
+#   --breed=${BREED}
 
 #Dreambooth LoRA fine-tuning
 accelerate launch src/customization/train_dreambooth_lora_sdxl.py \

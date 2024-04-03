@@ -66,7 +66,7 @@ def main(local_dir, vis_dir, species, breed):
     caption_prefix = f"a photo of TOK {breed} {species}, "
     with open(os.path.join(local_dir, f'metadata.jsonl'), 'w') as outfile:
       for img in imgs_and_paths:
-          caption = caption_prefix + caption_images(img[1]).split("\n")[0]
+          caption = caption_prefix + caption_images(img[1].resize(512, 512)).split("\n")[0]
           entry = {"file_name":img[0].split("/")[-1], "prompt": caption}
           json.dump(entry, outfile)
           outfile.write('\n')
