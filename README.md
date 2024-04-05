@@ -81,13 +81,13 @@ SD15 based model will yield bad results sometimes, SDXL based model is recommend
 conda activate diffuser
 bash scripts/train_dreambooth_lora_sd15.sh ${INPUT_DATA_DIR} ${MODEL_OUTPUT_DIR} ${SPECIES} ${BREED}
 e.g. 
-bash scripts/train_dreambooth_lora_sd15.sh gulu lora_weight_sd15/gulu dog collie
+bash scripts/train_dreambooth_lora_sd15.sh gulu lora_weights_sd15/gulu dog collie
 
 # train sdxl based dreambooth-lora
 conda activate diffuser
 bash scripts/train_dreambooth_lora_sdxl.sh ${INPUT_DATA_DIR} ${MODEL_OUTPUT_DIR} ${SPECIES} ${BREED}
 e.g. 
-bash scripts/train_dreambooth_lora_sdxl.sh gulu lora_weight_sdxl/gulu dog collie
+bash scripts/train_dreambooth_lora_sdxl.sh gulu lora_weights_sdxl/gulu dog collie
 
 ```
 
