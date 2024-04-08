@@ -122,7 +122,7 @@ bash scripts/gen_image_inference.sh ./lora_weights_sd15/gulu/pytorch_lora_weight
 conda activate animatediff_xl
 bash scripts/gen_video_inference.sh ${LORA_PATH} ${PROMPT_FILE} ${OUTPUT_DIR} ${STEP} ${GUIDANCE_SCALE} ${LORA_ALPHA} sdxl
 e.g.
-bash scripts/gen_image_inference.sh ./lora_weights_sd15/gulu/pytorch_lora_weights.safetensors ./prompts/prompts.txt gulu 100 9.5 0.85 sdxl
+bash scripts/gen_video_inference.sh ./lora_weights_sd15/gulu/pytorch_lora_weights.safetensors ./prompts/prompts.txt gulu 100 9.5 0.85 sdxl
 ```
 
 ## Limitations
