@@ -9,7 +9,7 @@ def parse_args():
     parser.add_argument('--prompt_file', type=str, 
                         help='text file containing input prompts for image generation.')
     parser.add_argument('--lora_weights_dir', type=str, 
-                        help='lora weights directory.')
+                        help='lora weights directory.', default='')
     parser.add_argument('--output_dir', type=str,  
                         help='output directory', default='sdxl_output/')
     return parser.parse_args()
@@ -26,9 +26,10 @@ def main(args):
         variant="fp16",
         use_safetensors=True
     )
-    repo_id = args.lora_weights_dir
-    assert os.path.exists(repo_id), f"{repo_id} does not exist."
-    pipe.load_lora_weights(repo_id)
+    if args.lora_weights_dir != '':
+        repo_id = args.lora_weights_dir
+        assert os.path.exists(repo_id), f"{repo_id} does not exist."
+        pipe.load_lora_weights(repo_id)
     _ = pipe.to("cuda")
     savedir = os.path.join(args.output_dir, os.path.dirname(args.lora_weights_dir).split("/")[-1])
     os.makedirs(savedir, exist_ok = True)
