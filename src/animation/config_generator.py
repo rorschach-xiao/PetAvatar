@@ -25,28 +25,46 @@ def main(args):
         for prompt in f.readlines():
             prompts.append(prompt.replace("\n", ""))
     if args.sd_base == "sd15":
-        conf_dict = {"domain_lora_scale": 1.0,
-                     "adapter_lora_path": "models/Motion_Module/v3_sd15_adapter.ckpt",
-                     "lora_model_path": "models/DreamBooth_LoRA/lora.safetensors",
-                     "inference_config": "configs/inference/inference-v3.yaml",
-                     "motion_module": "models/Motion_Module/v3_sd15_mm.ckpt",
-                     "seed": -1,
-                     "guidance_scale": args.guidance_scale,
-                     "steps": args.step,
-                     "lora_alpha": args.lora_alpha, 
-                     "prompt": prompts,
-                     "n_prompt": ["bad quality,worst quality" for _ in range(len(prompts))]}
+        if args.lora_weight_path != '':
+            conf_dict = {"domain_lora_scale": 1.0,
+                        "adapter_lora_path": "models/Motion_Module/v3_sd15_adapter.ckpt",
+                        "lora_model_path": "models/DreamBooth_LoRA/lora.safetensors",
+                        "inference_config": "configs/inference/inference-v3.yaml",
+                        "motion_module": "models/Motion_Module/v3_sd15_mm.ckpt",
+                        "seed": -1,
+                        "guidance_scale": args.guidance_scale,
+                        "steps": args.step,
+                        "lora_alpha": args.lora_alpha, 
+                        "prompt": prompts,
+                        "n_prompt": ["bad quality,worst quality" for _ in range(len(prompts))]}
+        else:
+            conf_dict = {"domain_lora_scale": 1.0,
+                        "adapter_lora_path": "models/Motion_Module/v3_sd15_adapter.ckpt",
+                        "inference_config": "configs/inference/inference-v3.yaml",
+                        "motion_module": "models/Motion_Module/v3_sd15_mm.ckpt",
+                        "seed": -1,
+                        "guidance_scale": args.guidance_scale,
+                        "steps": args.step,
+                        "prompt": prompts,
+                        "n_prompt": ["bad quality,worst quality" for _ in range(len(prompts))]}
         conf_dict = [conf_dict]
     elif args.sd_base == "sdxl":
-        conf_dict = {"lora_path": "models/DreamBooth_LoRA/lora.safetensors",
-                    "motion_module_path": "models/Motion_Module/mm_sdxl_v10_beta.ckpt",
-                    "seed": -1,
-                    "guidance_scale": args.guidance_scale,
-                    "step": args.step,
-                    "lora_alpha": args.lora_alpha, 
-                    "prompt": prompts,
-                    "n_prompt": ["bad quality,worst quality" for _ in range(len(prompts))]}
-    
+        if args.loar_weight_path != '':
+            conf_dict = {"lora_path": "models/DreamBooth_LoRA/lora.safetensors",
+                        "motion_module_path": "models/Motion_Module/mm_sdxl_v10_beta.ckpt",
+                        "seed": -1,
+                        "guidance_scale": args.guidance_scale,
+                        "step": args.step,
+                        "lora_alpha": args.lora_alpha, 
+                        "prompt": prompts,
+                        "n_prompt": ["bad quality,worst quality" for _ in range(len(prompts))]}
+        else:
+            conf_dict = {"motion_module_path": "models/Motion_Module/mm_sdxl_v10_beta.ckpt",
+                        "seed": -1,
+                        "guidance_scale": args.guidance_scale,
+                        "step": args.step,
+                        "prompt": prompts,
+                        "n_prompt": ["bad quality,worst quality" for _ in range(len(prompts))]}
     
     conf = OmegaConf.create(conf_dict)
     OmegaConf.save(conf, "./5-lora.yaml")
