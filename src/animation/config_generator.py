@@ -49,7 +49,7 @@ def main(args):
                         "n_prompt": ["bad quality,worst quality" for _ in range(len(prompts))]}
         conf_dict = [conf_dict]
     elif args.sd_base == "sdxl":
-        if args.loar_weight_path != '':
+        if args.lora_weight_path != '':
             conf_dict = {"lora_path": "models/DreamBooth_LoRA/lora.safetensors",
                         "motion_module_path": "models/Motion_Module/mm_sdxl_v10_beta.ckpt",
                         "seed": -1,
