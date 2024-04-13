@@ -63,6 +63,7 @@ else
     CUR_PATH=`pwd`
     python -m scripts.animate --exp_config configs/prompts/5-lora.yaml --H 1024 --W 1024 --L 16 --xformers --output_dir ${CUR_PATH}/../../../sdxl_video/${OUTPUT_DIR}
 
+  fi
 fi
 
 echo "==>> Video generation completed!"
