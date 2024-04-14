@@ -30,8 +30,10 @@ def main(args):
         repo_id = args.lora_weights_dir
         assert os.path.exists(repo_id), f"{repo_id} does not exist."
         pipe.load_lora_weights(repo_id)
+        savedir = os.path.join(args.output_dir, os.path.dirname(args.lora_weights_dir).split("/")[-1])
+    else:
+        savedir = os.path.join(args.output_dir, "non-lora")
     _ = pipe.to("cuda")
-    savedir = os.path.join(args.output_dir, os.path.dirname(args.lora_weights_dir).split("/")[-1])
     os.makedirs(savedir, exist_ok = True)
     with open(args.prompt_file, "r") as f:
         for prompt in f.readlines():
