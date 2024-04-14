@@ -11,7 +11,7 @@ echo "==>> Starting generating images..."
 
 if [[ "$SD_BASE" == "sd15" ]]
 then
-  if [[ "${LORA_PATH}" == "None"]]
+  if [[ "${LORA_PATH}" == "None" ]]
   then
     python src/customization/inference_sd15.py \
       --prompt_file=${PROMPT_FILE} \
@@ -26,7 +26,7 @@ then
   fi
 
 else
-  if [[ "${LORA_PATH}" == "None"]]
+  if [[ "${LORA_PATH}" == "None" ]]
   then
     python src/customization/inference_sdxl.py \
       --prompt_file=${PROMPT_FILE} \
