@@ -116,7 +116,7 @@ conda activate animatediff
 bash scripts/gen_video_inference.sh ${LORA_PATH} ${PROMPT_FILE} ${OUTPUT_DIR} ${STEP} ${GUIDANCE_SCALE} ${LORA_ALPHA} sd15
 
 e.g.
-bash scripts/gen_image_inference.sh ./lora_weights_sd15/gulu/pytorch_lora_weights.safetensors ./prompts/prompts.txt gulu 50 8.5 0.85 sd15
+bash scripts/gen_video_inference.sh ./lora_weights_sd15/gulu/pytorch_lora_weights.safetensors ./prompts/prompts.txt gulu 50 8.5 0.85 sd15
 
 # if your lora model is based on SDXL
 conda activate animatediff_xl
