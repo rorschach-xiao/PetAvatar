@@ -2,6 +2,8 @@
 
 This project uses DreamBooth + LoRA to generate customized model for your own pets, and uses AnimateDiff to animate your pets.
 
+[Project Page](https://rorschach-xiao.github.io/PetAvatar-Gallery/) | [Dataset](https://drive.google.com/drive/folders/1HSfSxqN8qSh-l2piE7AzvfPsRmAWIadT?usp=sharing)
+
 
 > pet images from user
 ![user pet](./imgs/vis.png)
@@ -27,6 +29,28 @@ This project uses DreamBooth + LoRA to generate customized model for your own pe
 |`a photo of a TOK collie dog `<br>`standing in the Colosseum `<br>` in Rome, high resolution, `<br>` realistic, 4k, high quality`|<img src="imgs/output_a_photo_of_a_TOK_collie_dog_standing_in_the_Colosseum_in_Rome,_high_quality,_realistic,_4k,_high_resolution.png" width="200px" height="200px" object-fit="contain">|<img src="imgs/2024-03-31T16-07-38.gif" width=200 height=200 object-fit="contain">|
 
 </center>
+
+## Dataset
+The dataset we collect includes 13 subjects of 2 different classes, dog and cat. The dataset contains a variable number of images per subject (4-5). Images of the subjects are usually captured in different conditions, environments and under different angles. You can download the dataset from our google drive: [Link](https://drive.google.com/drive/folders/1HSfSxqN8qSh-l2piE7AzvfPsRmAWIadT?usp=sharing).
+
+
+|Spieces|Breed|Number of Images|
+|-|-|-|
+|Dog|Collie|5|
+|Dog|Bull|5|
+|Dog|Golden Retriever|5|
+|Dog|Corgi|4|
+|Dog|Dachshund|4|
+|Dog|Doberman|4|
+|Dog|Hiromi|4|
+|Cat|Ragdoll|5|
+|Cat|Maine|5|
+|Cat|British ShortHair Silver|5|
+|Cat|British ShortHair Gold|5|
+|Cat|Bengal|5|
+|Cat|Abyssinian|5|
+
+
 
 ## Preparations
 ### Setup repo and create environment
