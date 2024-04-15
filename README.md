@@ -2,6 +2,8 @@
 
 This project uses DreamBooth + LoRA to generate customized model for your own pets, and uses AnimateDiff to animate your pets.
 
+![pipeline](./imgs/cv_project.png)
+
 [Project Page](https://rorschach-xiao.github.io/PetAvatar-Gallery/) | [Dataset](https://drive.google.com/drive/folders/1HSfSxqN8qSh-l2piE7AzvfPsRmAWIadT?usp=sharing)
 
 
