@@ -36,7 +36,7 @@ def resize_and_pad_images(ori_images):
     return None
 
 def save_images(pet_name, images):
-    directory = f"PetAvatar/{pet_name}"
+    directory = f"dataset/{pet_name}"
     if not os.path.exists(directory):
         os.makedirs(directory)
     concat_imgs = []
@@ -116,16 +116,17 @@ with gr.Blocks() as app:
                 )
         # image_input = gr.Image(label="Upload Image", type="file", multiple=True)
         with gr.Row():
-            upload_btn = gr.Button("Upload Images")
-            clear_btn = gr.Button("Clear")
-        image_vis_output = gr.Image(type="pil", label="Uploaded Image Visualization")
-        with gr.Row():
             pet_name_input = gr.Textbox(label="Pet Name")
             breed_input = gr.Textbox(label="Breed")
             species_input = gr.Textbox(label="Species")
             model_type_input = gr.Radio(
                 label="Select Model Type", choices=["sd15", "sdxl"]
             )
+        with gr.Row():
+            upload_btn = gr.Button("Upload Images")
+            clear_btn = gr.Button("Clear")
+        image_vis_output = gr.Image(type="pil", label="Uploaded Image Visualization")
+        
             
         train_btn = gr.Button("Train Model")
         progress_bar = gr.Number(label="Training Progress", value=0, visible=False)
