@@ -123,8 +123,8 @@ def generate_videos(
     lora_weights_path, step, guidance_scale, lora_alpha, custom_prompt = None
 ):
     lora_path = os.path.join(lora_weights_path, "pytorch_lora_weights.safetensors")
-    # if not os.path.exists(lora_path):
-    #     raise gr.Error("Please select a existing model or train a model first.")
+    if not os.path.exists(lora_path):
+        raise gr.Error("Please select a existing model or train a model first.")
 
     model_type = lora_weights_path.split("/")[0].split("_")[2]
     pet_name = lora_weights_path.split("/")[1]
