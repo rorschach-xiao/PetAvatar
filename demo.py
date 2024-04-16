@@ -118,4 +118,4 @@ with gr.Blocks() as app:
         outputs=[],
     )
 
-app.launch()
+app.launch(share=True)
