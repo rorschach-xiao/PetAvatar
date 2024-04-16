@@ -10,14 +10,16 @@ def resize_and_pad_images(ori_images):
     target_size = (512, 512)
 
     # 读取文件夹下的所有图片
-    for img in ori_images:    
+    for img in ori_images:
         # 保持比例缩放
         img.thumbnail(target_size, Image.LANCZOS)
-        
+
         # 添加padding
         padding_color = (255, 255, 255)  # 白色背景，你可以根据需要更改
-        padded_img = ImageOps.pad(img, target_size, color=padding_color, centering=(0.5, 0.5))
-        
+        padded_img = ImageOps.pad(
+            img, target_size, color=padding_color, centering=(0.5, 0.5)
+        )
+
         images.append(padded_img)
 
     # 将所有图片拼接成一张大图
@@ -25,18 +27,19 @@ def resize_and_pad_images(ori_images):
         # 计算拼接后的总宽度和高度
         total_width = target_size[0] * len(images)
         total_height = target_size[1]
-        concat_image = Image.new('RGB', (total_width, total_height))
-        
+        concat_image = Image.new("RGB", (total_width, total_height))
+
         x_offset = 0
         for img in images:
             concat_image.paste(img, (x_offset, 0))
             x_offset += target_size[0]
-        
+
         return concat_image
     return None
 
+
 def save_images(pet_name, images):
-    directory = f"dataset/{pet_name}"
+    directory = f"{pet_name}"
     if not os.path.exists(directory):
         os.makedirs(directory)
     concat_imgs = []
@@ -53,24 +56,39 @@ def train_model(pet_name, breed, species, model_type):
     input_data_dir = f"dataset/{pet_name}"
     assert os.path.exists(input_data_dir), "No images uploaded for training!"
     model_output_dir = f"lora_weights_{model_type}/{pet_name}"
-    subprocess.run(["conda", "activate", "diffuser"], shell=True)
+    # subprocess.run(["conda", "activate", "diffuser"], shell=True)
+    subprocess.run(
+        [
+            "python",
+            "src/customization/preprocessing_data.py",
+            "--img_dir",
+            pet_name,
+            "--vis_dir",
+            f"{pet_name}_vis",
+            "--breed",
+            breed,
+            "--species",
+            species,
+        ]
+    )
     subprocess.run(
         [
             "bash",
             f"scripts/train_dreambooth_lora_{model_type}.sh",
-            input_data_dir,
+            pet_name,
             model_output_dir,
             species,
             breed,
-        ],
-        shell=True,
+        ]
+        # shell=True,
     )
     if os.path.exists(model_output_dir):
         gr.Info("Model training completed!")
     else:
         gr.Error("Model training failed!")
     # Cleanup
-    shutil.rmtree(input_data_dir)
+    shutil.rmtree(pet_name)
+    shutil.rmtree(f"{pet_name}_vis")
     return "Model trained successfully!"
 
 
@@ -144,10 +162,8 @@ def generate_videos(
 
 
 with gr.Blocks() as app:
-    with gr.Tab('Model Traing'):
-        image_input = gr.Files(
-                    label="Upload Images", file_types=["image"]
-                )
+    with gr.Tab("Model Traing"):
+        image_input = gr.Files(label="Upload Images", file_types=["image"])
         # image_input = gr.Image(label="Upload Image", type="file", multiple=True)
         with gr.Row():
             pet_name_input = gr.Textbox(label="Pet Name")
@@ -160,8 +176,7 @@ with gr.Blocks() as app:
             upload_btn = gr.Button("Upload Images")
             clear_btn = gr.Button("Clear")
         image_vis_output = gr.Image(type="pil", label="Uploaded Image Visualization")
-        
-            
+
         train_btn = gr.Button("Train Model")
         # progress_bar = gr.Number(label="Training Progress", value=0, visible=False)
         upload_btn.click(save_images, inputs=[pet_name_input, image_input], outputs=[image_vis_output])
@@ -225,8 +240,6 @@ with gr.Blocks() as app:
     # custom_prompt_input = gr.Textbox(label="Custom Prompt (Optional)")
     # generate_img_btn = gr.Button("Generate Images")
     # generate_vid_btn = gr.Button("Generate Videos")
-    
-   
 
 
 app.launch()
