@@ -50,7 +50,8 @@ def save_images(pet_name, images):
 
 
 def train_model(pet_name, breed, species, model_type):
-    input_data_dir = f"PetAvatar/{pet_name}"
+    input_data_dir = f"dataset/{pet_name}"
+    assert os.path.exists(input_data_dir), "No images uploaded for training!"
     model_output_dir = f"lora_weights_{model_type}/{pet_name}"
     subprocess.run(["conda", "activate", "diffuser"], shell=True)
     subprocess.run(
@@ -64,34 +65,63 @@ def train_model(pet_name, breed, species, model_type):
         ],
         shell=True,
     )
+    if os.path.exists(model_output_dir):
+        gr.Info("Model training completed!")
+    else:
+        gr.Error("Model training failed!")
     # Cleanup
     shutil.rmtree(input_data_dir)
     return "Model trained successfully!"
 
 
-def generate_images(model_type, pet_name, custom_prompt=None):
-    lora_path = (
-        f"./lora_weights_{model_type}/{pet_name}/pytorch_lora_weights.safetensors"
-    )
-    prompt_file = "./prompts/cat-prompts.txt" if not custom_prompt else custom_prompt
+def generate_images(lora_weights_path, custom_prompt = None):
+    lora_path = os.path.join(lora_weights_path, "pytorch_lora_weights.safetensors")
+    if not os.path.exists(lora_path):
+        raise gr.Error("Please select a existing model or train a model first.")
+        # return None
+    model_type = lora_weights_path.split("/")[0].split("_")[2]
+    pet_name = lora_weights_path.split("/")[1]
+
+
+    if custom_prompt:
+        with open("./prompts/prompts_temp.txt", "w") as f:
+            f.write(custom_prompt)
+        prompt_file = "./prompts/prompts_temp.txt"
+    else:
+        prompt_file = "./prompts/prompts.txt"
     output_dir = f"./{model_type}_output/{pet_name}"
     subprocess.run(["conda", "activate", "diffuser"], shell=True)
     subprocess.run(
         ["bash", f"scripts/gen_image_inference.sh", model_type, lora_path, prompt_file],
         shell=True,
     )
-    return f"Images generated in {output_dir}"
+    # TODO: change to output image path
+    img_path = os.path.join(output_dir, "test.png")
+    
+    return img_path
 
 
 def generate_videos(
-    model_type, pet_name, step, guidance_scale, lora_alpha, custom_prompt=None
+    lora_weights_path, step, guidance_scale, lora_alpha, custom_prompt = None
 ):
-    lora_path = (
-        f"./lora_weights_{model_type}/{pet_name}/pytorch_lora_weights.safetensors"
-    )
-    prompt_file = "./prompts/cat-prompts.txt" if not custom_prompt else custom_prompt
+    lora_path = os.path.join(lora_weights_path, "pytorch_lora_weights.safetensors")
+    # if not os.path.exists(lora_path):
+    #     raise gr.Error("Please select a existing model or train a model first.")
+
+    model_type = lora_weights_path.split("/")[0].split("_")[2]
+    pet_name = lora_weights_path.split("/")[1]
+    if custom_prompt:
+        with open("./prompts/prompts_temp.txt", "w") as f:
+            f.write(custom_prompt)
+        prompt_file = "./prompts/prompts_temp.txt"
+    else:
+        prompt_file = "./prompts/prompts.txt"
     output_dir = f"./{model_type}_video/{pet_name}"
 
+    if model_type == "sd15":
+        subprocess.run(["conda", "activate", "animatediff"], shell=True)
+    elif model_type == "sdxl":
+        subprocess.run(["conda", "activate", "animatediff_xl"], shell=True)
     subprocess.run(
         [
             "bash",
@@ -106,7 +136,11 @@ def generate_videos(
         ],
         shell=True,
     )
-    return f"Videos generated in {output_dir}"
+
+    # TODO: change to output video path
+    vid_path = os.path.join(output_dir, "test.mp4")
+
+    return vid_path
 
 
 with gr.Blocks() as app:
@@ -129,37 +163,48 @@ with gr.Blocks() as app:
         
             
         train_btn = gr.Button("Train Model")
-        progress_bar = gr.Number(label="Training Progress", value=0, visible=False)
+        # progress_bar = gr.Number(label="Training Progress", value=0, visible=False)
         upload_btn.click(save_images, inputs=[pet_name_input, image_input], outputs=[image_vis_output])
         clear_btn.click(lambda: image_input.clear())
         train_btn.click(
             train_model,
             inputs=[pet_name_input, breed_input, species_input, model_type_input],
-            outputs=[progress_bar],
+            outputs=[],
         )
     with gr.Tab('Image Generation'):
-        custom_prompt_input = gr.Textbox(label="Custom Prompt (Optional)")
+        custom_prompt_input_img = gr.Textbox(label="Custom Prompt")
+        with gr.Row():
+            # TODO: read lora weights from the model directory
+            lora_dropdown = gr.Dropdown(label="Select LoRA weights", 
+                                        choices=["lora_weights_sd15/gulu", "lora_weights_sdxl/gulu"])
+          
         generate_img_btn = gr.Button("Generate Images")
+        generate_img_output = gr.Image(type="pil", label="Generated Image")
         generate_img_btn.click(
             generate_images,
-            inputs=[model_type_input, pet_name_input, custom_prompt_input],
-            outputs=[],
+            inputs=[lora_dropdown, custom_prompt_input_img],
+            outputs=[generate_img_output],
         )
   
     with gr.Tab('Video Generation'):
-        custom_prompt_input = gr.Textbox(label="Custom Prompt (Optional)")
+        custom_prompt_input_vid = gr.Textbox(label="Custom Prompt")
+        with gr.Row():
+            # TODO: read lora weights from the model directory
+            lora_dropdown = gr.Dropdown(label="Select LoRA weights", 
+                                        choices=["lora_weights_sd15/gulu", "lora_weights_sdxl/gulu"])
+          
         generate_vid_btn = gr.Button("Generate Videos")
+        generate_vid_output = gr.Video(label="Generated Video")
         generate_vid_btn.click(
             generate_videos,
             inputs=[
-                model_type_input,
-                pet_name_input,
+                lora_dropdown,
                 gr.Slider(50, 100, step=1),
                 gr.Slider(7.0, 10.0, step=0.1),
                 gr.Slider(0.5, 1.0, step=0.05),
-                custom_prompt_input,
+                custom_prompt_input_vid,
             ],
-            outputs=[],
+            outputs=[generate_vid_output],
         )
     # with gr.Row():
     #     with gr.Column():
