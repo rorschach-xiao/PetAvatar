@@ -249,7 +249,7 @@ with gr.Blocks() as app:
                 lora_alpha,
                 custom_prompt_input_vid,
             ],
-            outputs=[generate_vid_output],
+            outputs=[generate_vid_output]
         )
 
 
