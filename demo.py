@@ -149,7 +149,8 @@ def generate_videos(
         prompt_file = "./prompts/prompts_temp.txt"
     else:
         prompt_file = "./prompts/prompts.txt"
-    output_dir = f"./{model_type}_video/{pet_name}"
+    time_str = datetime.datetime.now().strftime("%Y-%m-%d")
+    output_dir = f"./{model_type}_video/{pet_name}/5-lora_1024_1024-{time_str}"
 
     # if model_type == "sd15":
     #     subprocess.run(["conda", "activate", "animatediff"], shell=True)
