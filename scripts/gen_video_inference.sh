@@ -11,6 +11,7 @@ echo "==>> Starting generating videos..."
 # generate config file
 if [[ "$SD_BASE" == "sd15" ]]
 then
+  conda activate animatediff
   if [[ "${LORA_PATH}" != "None" ]]
   then
     python src/animation/config_generator.py --sd_base ${SD_BASE} --lora_weight_path ${LORA_PATH} --prompt_file_path ${PROMPT_FILE} --step ${STEP} --guidance_scale ${GUIDANCE_SCALE} --lora_alpha ${LORA_ALPHA}
@@ -36,8 +37,10 @@ then
     CUR_PATH=`pwd`
     python -m scripts.animate --config configs/prompts/5-lora.yaml --output_dir ${CUR_PATH}/../../../sd15_video/${OUTPUT_DIR}
   fi
+  conda deactivate
 
 else 
+  conda activate animatediff_xl
   if [[ "${LORA_PATH}" != "None" ]]
   then
     python src/animation/config_generator.py --sd_base ${SD_BASE} --lora_weight_path ${LORA_PATH} --prompt_file_path ${PROMPT_FILE} --step ${STEP} --guidance_scale ${GUIDANCE_SCALE} --lora_alpha ${LORA_ALPHA}
@@ -64,6 +67,7 @@ else
     python -m scripts.animate --exp_config configs/prompts/5-lora.yaml --H 1024 --W 1024 --L 16 --xformers --output_dir ${CUR_PATH}/../../../sdxl_video/${OUTPUT_DIR}
 
   fi
+  conda deactivate
 fi
 
 echo "==>> Video generation completed!"
