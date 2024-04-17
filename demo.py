@@ -155,13 +155,13 @@ def generate_videos(
     #     subprocess.run(["conda", "activate", "animatediff"], shell=True)
     # elif model_type == "sdxl":
     #     subprocess.run(["conda", "activate", "animatediff_xl"], shell=True)
-    subprocess.run(
-        [
-            "conda",
-            "activate",
-            "animatediff_xl",
-        ]
-    )
+    # subprocess.run(
+    #     [
+    #         "conda",
+    #         "activate",
+    #         "animatediff_xl",
+    #     ]
+    # )
     subprocess.run(
         [
             "bash",
