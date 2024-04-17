@@ -182,7 +182,7 @@ def generate_videos(
 
 
 with gr.Blocks() as app:
-    with gr.Tab("Model Traing"):
+    with gr.Tab("Model Training"):
         image_input = gr.Files(label="Upload Images", file_types=["image"])
         with gr.Row():
             pet_name_input = gr.Textbox(label="Pet Name")
@@ -226,6 +226,9 @@ with gr.Blocks() as app:
 
     with gr.Tab("Video Generation"):
         custom_prompt_input_vid = gr.Textbox(label="Custom Prompt")
+        steps = gr.Slider(50, 100, step=1, label="Step"),
+        guidance_scale= gr.Slider(7.0, 10.0, step=0.1, label="Guidance Scale"),
+        lora_alpha = gr.Slider(0.5, 1.0, step=0.05, label="LoRA Alpha"),
         with gr.Row():
             # TODO: read lora weights from the model directory
             lora_dropdown = gr.Dropdown(
@@ -239,9 +242,9 @@ with gr.Blocks() as app:
             generate_videos,
             inputs=[
                 lora_dropdown,
-                gr.Slider(50, 100, step=1, label="Step"),
-                gr.Slider(7.0, 10.0, step=0.1, label="Guidance Scale"),
-                gr.Slider(0.5, 1.0, step=0.05, label="LoRA Alpha"),
+                steps,
+                guidance_scale,
+                lora_alpha,
                 custom_prompt_input_vid,
             ],
             outputs=[generate_vid_output],
