@@ -163,21 +163,8 @@ def generate_videos(
     #     ]
     # )
     subprocess.run(
-        [
-            "conda",
-            "run",
-            "-n",
-            "animatediff_xl",
-            "bash",
-            f"scripts/gen_video_inference.sh",
-            lora_path,
-            prompt_file,
-            output_dir,
-            str(step),
-            str(guidance_scale),
-            str(lora_alpha),
-            model_type,
-        ], 
+        f"source scripts/gen_video_inference.sh {lora_path} {prompt_file} {output_dir} {str(step)} {str(guidance_scale)} {str(lora_alpha)} {model_type}",
+        executable="/bin/bash",
         shell=True
     )
 
