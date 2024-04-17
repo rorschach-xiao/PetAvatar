@@ -149,7 +149,7 @@ def generate_videos(
         prompt_file = "./prompts/prompts_temp.txt"
     else:
         prompt_file = "./prompts/prompts.txt"
-    output_dir = f"{pet_name}"
+    output_dir = f"./{model_type}_video/{pet_name}"
 
     # if model_type == "sd15":
     #     subprocess.run(["conda", "activate", "animatediff"], shell=True)
@@ -163,7 +163,7 @@ def generate_videos(
     #     ]
     # )
     subprocess.run(
-        f"source scripts/gen_video_inference.sh {lora_path} {prompt_file} {output_dir} {str(step)} {str(guidance_scale)} {str(lora_alpha)} {model_type}",
+        f"source scripts/gen_video_inference.sh {lora_path} {prompt_file} {pet_name} {str(step)} {str(guidance_scale)} {str(lora_alpha)} {model_type}",
         executable="/bin/bash",
         shell=True
     )
