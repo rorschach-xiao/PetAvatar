@@ -164,7 +164,7 @@ def generate_videos(
     # )
     subprocess.run(
         [
-            "bash",
+            "source",
             f"scripts/gen_video_inference.sh",
             lora_path,
             prompt_file,
