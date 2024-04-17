@@ -37,7 +37,7 @@ then
     CUR_PATH=`pwd`
     python -m scripts.animate --config configs/prompts/5-lora.yaml --output_dir ${CUR_PATH}/../../../sd15_video/${OUTPUT_DIR}
   fi
-  conda deactivate animatediff
+  conda deactivate
 
 else 
   conda activate animatediff_xl
@@ -67,7 +67,7 @@ else
     python -m scripts.animate --exp_config configs/prompts/5-lora.yaml --H 1024 --W 1024 --L 16 --xformers --output_dir ${CUR_PATH}/../../../sdxl_video/${OUTPUT_DIR}
 
   fi
-  conda deactivate animatediff_xl
+  conda deactivate
 fi
 
 echo "==>> Video generation completed!"
