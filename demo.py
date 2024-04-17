@@ -4,6 +4,7 @@ import os
 from PIL import Image, ImageOps
 import shutil
 import subprocess
+import datetime
 
 
 def resize_and_pad_images(ori_images):
