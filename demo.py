@@ -178,7 +178,7 @@ def generate_videos(
             vid_path = os.path.join(output_dir, file)
             break
     if os.path.exists(vid_path):
-        return gr.Video.open(vid_path)
+        return vid_path
     else:
         raise gr.Error("Generated video not found.")
 
