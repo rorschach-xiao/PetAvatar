@@ -257,4 +257,4 @@ with gr.Blocks() as app:
         )
 
 
-app.launch()
+app.launch(share=True)
