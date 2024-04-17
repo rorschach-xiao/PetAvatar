@@ -7,6 +7,7 @@ LORA_ALPHA=$6
 SD_BASE=$7
 
 echo "==>> Starting generating videos..."
+source ~/miniconda3/etc/profile.d/conda.sh
 
 # generate config file
 if [[ "$SD_BASE" == "sd15" ]]
