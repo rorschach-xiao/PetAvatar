@@ -54,7 +54,7 @@ def main(args):
                         "motion_module_path": "models/Motion_Module/mm_sdxl_v10_beta.ckpt",
                         "seed": -1,
                         "guidance_scale": args.guidance_scale,
-                        "step": args.step,
+                        "steps": args.step,
                         "lora_alpha": args.lora_alpha, 
                         "prompt": prompts,
                         "n_prompt": ["bad quality,worst quality" for _ in range(len(prompts))]}
@@ -62,7 +62,7 @@ def main(args):
             conf_dict = {"motion_module_path": "models/Motion_Module/mm_sdxl_v10_beta.ckpt",
                         "seed": -1,
                         "guidance_scale": args.guidance_scale,
-                        "step": args.step,
+                        "steps": args.step,
                         "prompt": prompts,
                         "n_prompt": ["bad quality,worst quality" for _ in range(len(prompts))]}
     
