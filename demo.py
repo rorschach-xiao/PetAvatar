@@ -173,8 +173,8 @@ def generate_videos(
             str(guidance_scale),
             str(lora_alpha),
             model_type,
-        ]
-        # shell=True,
+        ], 
+        shell=True
     )
 
     # TODO: Test the video generation
