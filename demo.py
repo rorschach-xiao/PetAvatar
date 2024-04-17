@@ -248,9 +248,9 @@ with gr.Blocks() as app:
             generate_videos,
             inputs=[
                 lora_dropdown,
-                gr.Slider(50, 100, step=1),
-                gr.Slider(7.0, 10.0, step=0.1),
-                gr.Slider(0.5, 1.0, step=0.05),
+                gr.Slider(50, 100, step=1, label="Step"),
+                gr.Slider(7.0, 10.0, step=0.1, label="Guidance Scale"),
+                gr.Slider(0.5, 1.0, step=0.05, label="LoRA Alpha"),
                 custom_prompt_input_vid,
             ],
             outputs=[generate_vid_output],
