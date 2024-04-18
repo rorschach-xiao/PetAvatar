@@ -33,7 +33,7 @@ This project uses DreamBooth + LoRA to generate customized model for your own pe
 </center>
 
 ## Dataset
-The dataset we collect includes 13 subjects of 2 different classes, dog and cat. The dataset contains a variable number of images per subject (4-5). Images of the subjects are usually captured in different conditions, environments and under different angles. You can download the dataset from our google drive: [Link](https://drive.google.com/drive/folders/1HSfSxqN8qSh-l2piE7AzvfPsRmAWIadT?usp=sharing).
+The dataset we collect includes 13 subjects of 2 different classes, dog and cat. The dataset contains a variable number of images per subject (3-5). Images of the subjects are usually captured in different conditions, environments and under different angles. You can download the dataset from our google drive: [Link](https://drive.google.com/drive/folders/1HSfSxqN8qSh-l2piE7AzvfPsRmAWIadT?usp=sharing).
 
 
 |Spieces|Breed|Number of Images|
@@ -41,7 +41,7 @@ The dataset we collect includes 13 subjects of 2 different classes, dog and cat.
 |Dog|Collie|5|
 |Dog|Bull|5|
 |Dog|Golden Retriever|5|
-|Dog|Corgi|4|
+|Dog|Maltipoo|3|
 |Dog|Dachshund|4|
 |Dog|Doberman|4|
 |Dog|Hiromi|4|
